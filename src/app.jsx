@@ -1,13 +1,30 @@
 import React from 'react';
 import ReactDom from 'react-dom'
+import { BrowserRouter as Router, Redirect, Switch, Route, Link } from 'react-router-dom'
 
-import 'font-awesome/css/font-awesome.min.css'
-import './app.css'
-import './index.scss'
+import Layout from 'component/layout/index.jsx'
+
+import Home from 'page/home/index.jsx'
+
+class App extends React.Component{
+  constructor(props) {
+    super(props)
+  }
+  render () {
+    return (
+      <Router>
+        <Layout>
+          <Switch>
+            <Route exact path='/' component={Home}></Route>
+            <Redirect from='*' to='/'/>
+          </Switch>
+        </Layout>
+      </Router>
+    );
+  }
+}
+
 ReactDom.render(
-  <div>
-    <i className='fa fa-camera-retro'></i>
-    <h1>Hello World</h1>
-  </div>,
+  <App/>, 
   document.getElementById('root')
 )
