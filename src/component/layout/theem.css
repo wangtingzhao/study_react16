@@ -19,6 +19,7 @@ body {
 
 #page-wrapper {
 	padding: 15px 15px;
+	margin: 0 0 0 260px;
 }
 
 #page-inner {
@@ -601,9 +602,11 @@ ul.nav.nav-second-level.collapse.in {
     MEDIA QUERIES     
 ------------------------------------------------*/
  
-@media(,ma-width:768px) {
-	#page-wrapper {
-	}
+@media(max-width:768px) {
+	/* #page-wrapper{
+		padding: 15px 30px;
+		min-height: 1200px;
+	} */
 
 	.navbar-side {
 		z-index: 1;
@@ -615,11 +618,4 @@ ul.nav.nav-second-level.collapse.in {
 	}
 }
 
-/* @media(max-width:480px) {
-	.page-header small {
-		display: block;
-		padding-top: 14px;
-		font-size: 19px;
-	}
-} */
 

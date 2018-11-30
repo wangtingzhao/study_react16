@@ -16,7 +16,11 @@ class App extends React.Component{
         <Layout>
           <Switch>
             <Route exact path='/' component={Home}></Route>
-            <Redirect from='*' to='/'/>
+            <Route  path='/product' component={Home}></Route>
+            <Route  path='/product.categroy' component={Home}></Route>
+            <Route  path='/order' component={Home}></Route>
+            <Route  path='/user' component={Home}></Route>
+            {/* <Redirect from='*' to='/'/> */}
           </Switch>
         </Layout>
       </Router>

@@ -70,7 +70,8 @@ module.exports = {
   plugins: [
     // html文件处理
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
+      favicon: './favicon.ico'
     }),
     // 独立css文件
     new ExtractTextPlugin("css/[name].css"),
