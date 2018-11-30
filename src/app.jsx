@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDom from 'react-dom'
 import { BrowserRouter as Router, Redirect, Switch, Route, Link } from 'react-router-dom'
 
-import Layout from 'component/layout/index.jsx'
+import 'antd/dist/antd.css'
+import Layouts from 'component/layout/index.jsx'
 
 import Home from 'page/home/index.jsx'
 
@@ -13,12 +14,12 @@ class App extends React.Component{
   render () {
     return (
       <Router>
-        <Layout>
+        <Layouts>
           <Switch>
             <Route exact path='/' component={Home}></Route>
             <Redirect from='*' to='/'/>
           </Switch>
-        </Layout>
+        </Layouts>
       </Router>
     );
   }
