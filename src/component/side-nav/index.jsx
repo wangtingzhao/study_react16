@@ -1,18 +1,60 @@
+
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 class SideNav extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      data:[
+        {name: '首页', to: '/'},
+        {name: '商品', to: '/product', children: [{ name: '商品管理', to: '/product' }, { name: '商品管理', to: 'product' }]},
+        {name: '订单', to: '/order', children: [{ name: '订单', to: '/order' }]},
+        {name: '用户', to: '/user', children: [{ name: '用户管理', to: '/user' }]}
+      ]
+    }
+  }
   render() {
     return (
       <div className="navbar-default navbar-side" >
         <div className="sidebar-collapse">
           <ul className="nav" >
-            <li>
-              <NavLink exact activeClassName='active-menu' to="/">
-                <i className="fa fa-dashboard"></i>
-                <span>首页</span>
-              </NavLink>
-            </li>
-            <li className='active'>
+            {
+              this.state.data.map((item) => {
+                if (!item.hidden) {
+                  if (!item.children) {
+                    return (
+                      <li key={item.to}>
+                        <NavLink exact activeClassName='active-menu' to={item.to}>
+                          <i className="fa fa-dashboard"></i>
+                          <span>{item.name}</span>
+                        </NavLink>
+                      </li>
+                    )
+                  } else {
+                    return (
+                      <li className='active' key={item.to}>
+                        <Link to={item.to}>
+                          <i className="fa fa-sitemap"></i>
+                          <span>{item.name}</span>
+                          <span className="fa arrow"></span>
+                        </Link>
+                        <ul className="nav nav-second-level collapse in">
+                          {
+                            item.children.map((items) => {
+                              return (
+                                <li key={items.to}><NavLink to={items.to} activeClassName='active-menu'>{items.name}</NavLink></li>
+                              )
+                            })
+                          }
+                        </ul>
+                      </li>
+                    )
+                  }
+                }
+              })
+            }
+            
+            {/* <li className='active'>
               <Link to="/product">
                 <i className="fa fa-sitemap"></i>
                 <span>商品</span>
@@ -50,7 +92,7 @@ class SideNav extends React.Component{
                   <NavLink to="/user" activeClassName='active-menu'>用户管理</NavLink>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
