@@ -7,9 +7,9 @@ class SideNav extends React.Component{
     this.state = {
       data:[
         {name: '首页', to: '/'},
-        {name: '商品', to: '/product', children: [{ name: '商品管理', to: '/product' }, { name: '商品管理', to: 'product' }]},
-        {name: '订单', to: '/order', children: [{ name: '订单', to: '/order' }]},
-        {name: '用户', to: '/user', children: [{ name: '用户管理', to: '/user' }]}
+        {name: '商品', to: '/product', className:'fa fa-list', children: [{ name: '商品管理', to: '/product' }, { name: '商品管理', to: 'product' }]},
+        {name: '订单', to: '/order', className:'fa fa-check-square-o', children: [{ name: '订单', to: '/order' }]},
+        {name: '用户', to: '/user', className:'fa fa-user-o', children: [{ name: '用户管理', to: '/user' }]}
       ]
     }
   }
@@ -34,7 +34,7 @@ class SideNav extends React.Component{
                     return (
                       <li className='active' key={item.to}>
                         <Link to={item.to}>
-                          <i className="fa fa-sitemap"></i>
+                          <i className={item.className}></i>
                           <span>{item.name}</span>
                           <span className="fa arrow"></span>
                         </Link>

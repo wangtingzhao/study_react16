@@ -30,6 +30,7 @@ class Login extends React.Component{
     checkResult = _user.checkLoginInfo(LoginInfo)
     if (checkResult.status) {
       _user.login(LoginInfo).then((res) => {
+        _mm.setStorage('userInfo', res)
         this.props.history.push(this.state.redirect);
       }, (errMsg) => {
         _mm.errorTips(errMsg);
@@ -38,7 +39,11 @@ class Login extends React.Component{
     else {
       _mm.errorTips(checkResult.msg);
     }
-    
+  }
+  onInputKeyUp(e) {
+    if (e.keyCode === 13) {
+      this.onSubmit();
+    }
   }
   render() {
     return (
@@ -50,11 +55,21 @@ class Login extends React.Component{
             <div>
                 <div className="form-group">
                   {/* <label htmlFor="exampleInputEmail1">用户名</label> */}
-                  <input type="test" name='username' className="form-control" placeholder="请输入用户名" onChange={e => this.onInputChange(e)} />
+                  <input type="test" 
+                         name='username'
+                         className="form-control"
+                         placeholder="请输入用户名"
+                         onKeyUp={e => this.onInputKeyUp(e)}
+                         onChange={e => this.onInputChange(e)} />
                 </div>
                 <div className="form-group">
                   {/* <label htmlFor="exampleInputPassword1">密码</label> */}
-                  <input type="password" name='password' className="form-control" placeholder="请输入密码" onChange={e => this.onInputChange(e)} />
+                  <input type="password"
+                         name='password'
+                         className="form-control"
+                         placeholder="请输入密码"
+                         onKeyUp={e => this.onInputKeyUp(e)}
+                         onChange={e => this.onInputChange(e)} />
                 </div>
                 <button className="btn btn-lg btn-block btn-primary" onClick={e => this.onSubmit(e)}>登录</button>
               </div>

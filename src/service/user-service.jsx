@@ -30,6 +30,21 @@ class User {
       msg: '验证通过 '
     }
   }
-}
+  logout(loginInfo) {
+    return _mm.request({
+      type: 'post',
+      url: '/user/logout.do'
+    })
+  }
+  getUserList(pageNum) {
+    return _mm.request({
+      type: 'post',
+      url: '/manage/user/list.do',
+      data: {
+        pageNum: pageNum
+      }
+    })
+  }
+} 
 
 export default User;

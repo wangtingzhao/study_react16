@@ -8,7 +8,7 @@ class MUitl {
         url: param.url || '',
         dataType: param.dataType || 'json',
         data: param.data || null,
-        success(res) {
+        success: res => {
           if (0 === res.status) {
             typeof resolve === 'function' && resolve(res.data, res.msg)
           }
@@ -19,7 +19,7 @@ class MUitl {
             typeof reject === 'function' && reject(res.msg || res.data)
           }
         },
-        error(err) {
+        error: err => {
           typeof reject === 'function' && reject(err.statusText)
         }
       })
@@ -38,6 +38,30 @@ class MUitl {
   } 
   errorTips (errMsg) {
     alert(errMsg || '好像哪里不对了~~')
+  }
+  setStorage(name, data) {
+    let dataType = typeof data;
+    if (dataType === 'object') {
+      window.localStorage.setItem(name, JSON.stringify(data))
+    }
+    else if (['number', 'string', 'boolean'].indexOf(dataType)) {
+      window.localStorage.setItem(name, data)
+    }
+    else {
+      alert('暂不支持该类型存储')
+    }
+  } 
+  getStorage(name) {
+    let data = window.localStorage.getItem(name);
+    if (data) {
+      return JSON.parse(data)
+    }
+    else {
+      return ''
+    }
+  }
+  removeStorage(name) {
+    window.localStorage.removeItem(name)
   }
 }
 

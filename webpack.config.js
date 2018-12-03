@@ -92,6 +92,10 @@ module.exports = {
       '/manage': {
         target: 'htpp://admintest.happymmall.com',
         changeOrigin: true
+      },
+      '/user/logout.do': {
+        target: 'htpp://admintest.happymmall.com',
+        changeOrigin: true
       }
     }
   },
