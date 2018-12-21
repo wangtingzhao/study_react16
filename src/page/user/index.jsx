@@ -4,7 +4,8 @@ import Muitl from 'uitl/mm.jsx'
 import User from 'service/user-service.jsx'
 
 import Pagination from 'uitl/pagination/index.jsx';
-import PageTitle from 'component/page-title/index.jsx'
+import TableList from 'uitl/table-list/index.jsx';
+import PageTitle from 'component/page-title/index.jsx';
 
 const _mm = new Muitl();
 const _user = new User();
@@ -15,8 +16,7 @@ class UserList extends React.Component{
     super(props);
     this.state = {
       list: [],
-      pageNum: 1,
-      fristLoading: true
+      pageNum: 1
     }
   }
   componentDidMount(){
@@ -24,11 +24,7 @@ class UserList extends React.Component{
   }
   loadUserList() {
     _user.getUserList(this.state.pageNum).then(res => {
-      this.setState(res, () => {
-        this.setState({
-          fristLoading: false
-        })
-      });
+      this.setState(res);
     }, errMsg => {
       this.setState({
         list: []
@@ -55,36 +51,13 @@ class UserList extends React.Component{
           </tr>
       );
     });
-    let listError = (
-      <tr>
-        <th colSpan='5' className='text-center'>
-          {this.state.fristLoading ? '正在加载数据中...' : '找不到相应的数据~~'}
-        </th>
-      </tr>
-    );
-    let tableBody = this.state.list.length > 0 ? listBody : listError;
     return (
       <div id="page-wrapper">
         <PageTitle title='用户列表'/>
-        <div className="row">
-          <div className="col-md-12">
-            <table className="table table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>用户名</th>
-                  <th>电话 </th>
-                  <th>邮箱</th>
-                  <th>注册时间</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tableBody}
-              </tbody>
-            </table>
-            <Pagination current={this.state.pageNum} total={this.state.total} onChange={pageNum => this.onPageNumChange(pageNum)}/>
-          </div>
-        </div>
+        <TableList tableHeads={['ID','用户名','电话','邮箱','注册时间']}>
+        {listBody}
+        </TableList>
+        <Pagination current={this.state.pageNum} total={this.state.total} onChange={pageNum => this.onPageNumChange(pageNum)}/>
       </div>
     );
   }

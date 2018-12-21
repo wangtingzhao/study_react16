@@ -6,6 +6,7 @@ import Layout from 'component/layout/index.jsx'
 
 import Home from 'page/home/index.jsx'
 import Login from 'page/login/index.jsx'
+import ProductList from 'page/product/router.jsx'
 import UserList from 'page/user/index.jsx'
 import ErrorPage from 'page/error/index.jsx'
 
@@ -18,8 +19,8 @@ class App extends React.Component{
       <Layout>
         <Switch>
           <Route exact path='/' component={Home}></Route>
-          <Route  path='/product' component={Home}></Route>
-          <Route  path='/product-categroy' component={Home}></Route>
+          <Route  path='/product' component={ProductList}></Route>
+          <Route  path='/product-categroy' component={ProductList}></Route>
           <Route  path='/order' component={Home}></Route>
           <Route  path='/user/index' component={UserList}></Route>
           <Redirect from='/user' to='/user/index'/>

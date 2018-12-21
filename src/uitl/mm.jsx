@@ -1,7 +1,6 @@
 
 class MUitl {
   request(param) {
-    console.log(param)
     return new Promise((resolve, reject)=>{
       $.ajax({
         type: param.type || 'get',
@@ -38,6 +37,9 @@ class MUitl {
   } 
   errorTips (errMsg) {
     alert(errMsg || '好像哪里不对了~~')
+  }
+  successTips (successMsg) {
+    alert(successMsg || '操作成功')
   }
   setStorage(name, data) {
     let dataType = typeof data;
