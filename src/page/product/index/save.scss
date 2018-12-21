@@ -1,0 +1,33 @@
+.img-ion{
+  width: 80px;
+  height: 80px;
+  float: left;
+  margin-right: 10px;
+  border: 1px solid #eee;
+  position: relative;
+  .img{
+    width: 100%;
+  }
+  .fa-close{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    font-size: 50px;
+    color: #aaa;
+    background: rgba(0,0,0,.2);
+    text-align: center;
+    line-height: 80px;
+    display: none
+  }
+  &:hover{
+    .fa-close{
+      display: block;
+    }
+  }
+}
+.file_uploade_con {
+  margin-top: 10px;
+}
