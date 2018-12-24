@@ -3,7 +3,7 @@ import Muitl from 'uitl/mm.jsx'
 const _mm = new Muitl();
 
 class User {
-  login(loginInfo) {
+  login(loginInfo) { // 登录接口
     return _mm.request({
       type: 'post',
       url: '/manage/user/login.do',
@@ -30,13 +30,13 @@ class User {
       msg: '验证通过 '
     }
   }
-  logout(loginInfo) {
+  logout(loginInfo) {// 退出接口
     return _mm.request({
       type: 'post',
       url: '/user/logout.do'
     })
   }
-  getUserList(pageNum) {
+  getUserList(pageNum) { // 获取用户列表接口
     return _mm.request({
       type: 'post',
       url: '/manage/user/list.do',

@@ -4,12 +4,11 @@ const _mm = new Muitl();
 
 class Product {
   getProductList(listParam) {
-    console.log(listParam)
     let url = '', data = {};
-    if (listParam.listType === 'list') {
+    if (listParam.listType === 'list') { // 商品列表接口
       url = '/manage/product/list.do';
       data.pageNum = listParam.pageNum;
-    } else if (listParam.listType === 'search') {
+    } else if (listParam.listType === 'search') {// 商品搜索列表接口
       url = '/manage/product/search.do';
       data.pageNum = listParam.pageNum;
       data[listParam.searchType] = listParam.Keyword
@@ -20,14 +19,14 @@ class Product {
       data: data
     })
   }
-  setProductStatus(productInfo) {
+  setProductStatus(productInfo) { // 修改商品状态
     return _mm.request({
       type: 'post',
       url: '/manage/product/set_sale_status.do',
       data: productInfo
     })
   }
-  checkProduct(product) {
+  checkProduct(product) { // 校验字段填写
     let Result = {
       status: true,
       msg: '成功'
@@ -65,7 +64,7 @@ class Product {
     }
     return Result
   }
-  saveProduct(product) {
+  saveProduct(product) { // 新增及更新商品
     return _mm.request({
       type: 'post',
       url: '/manage/product/save.do',
@@ -82,13 +81,27 @@ class Product {
       }
     })
   }
-  getProduct(productId) {
+  getProduct(productId) { // 商品详情
     return _mm.request({
       type: 'post',
       url: '/manage/product/detail.do',
       data: {
         productId: productId || 0
       }
+    })
+  }
+  updataCategoryName(product) { // 修改品类名称
+    return _mm.request({
+      type: 'post',
+      url: '/manage/category/set_category_name.do',
+      data: product
+    })
+  }
+  saveCategroy(product) { //添加品类
+    return _mm.request({
+      type: 'post',
+      url: '/manage/category/add_category.do',
+      data: product
     })
   }
 } 

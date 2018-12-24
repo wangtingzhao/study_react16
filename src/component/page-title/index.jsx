@@ -7,6 +7,7 @@ class PgaeTitle extends React.Component{
 
   componentWillMount() {
     document.title = this.props.title + ' HAPPY MMALL'
+    console.log(this.props)
   }
 
   render() {
